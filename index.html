@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Minha Agenda</title>
+<title>A Minha Agenda — v5</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -26,18 +26,18 @@
 
   /* Sidebar */
   .side{width:230px;background:var(--panel);border-right:1px solid var(--line);
-    padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;margin-bottom:18px;padding:0 6px}
+    padding:14px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;margin-bottom:10px;padding:0 6px}
   .brand .dot{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--purple));display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 6px rgba(255,126,182,.4)}
-  .nav{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;color:var(--muted);
-    font-weight:600;border:none;background:none;width:100%;text-align:left}
+  .nav{display:flex;align-items:center;gap:11px;padding:6px 12px;border-radius:10px;color:var(--muted);
+    font-weight:600;border:none;background:none;width:100%;text-align:left;font-size:13.5px}
   .nav:hover{background:var(--brand-soft);color:var(--brand)}
   .nav.active{background:var(--brand-soft);color:var(--brand)}
   .nav .ic{width:20px;text-align:center;font-size:16px}
   .nav .badge{margin-left:auto;background:var(--brand);color:#fff;border-radius:20px;
     font-size:11px;padding:1px 8px;min-width:20px;text-align:center}
   .side .foot{margin-top:auto;font-size:11px;color:var(--muted);padding:0 6px}
-  .bkrow{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .bkrow{display:flex;flex-direction:column;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
   .bkbtn{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;text-align:center;display:block}
   .bkbtn:hover{border-color:var(--brand);color:var(--brand)}
   .bkbtn.save{background:var(--brand-soft);color:var(--brand);border-color:var(--brand-soft);font-size:13px}
@@ -61,7 +61,8 @@
 
   /* Stats */
   .stats{grid-template-columns:repeat(5,1fr);margin-bottom:20px}
-  .stat{padding:16px 18px}
+  .stat{padding:16px 18px;cursor:pointer;transition:transform .1s,box-shadow .1s}
+  .stat:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(255,126,182,.25);border-color:var(--brand)}
   .stat .n{font-size:28px;font-weight:700}
   .stat .l{color:var(--muted);font-weight:600;font-size:12.5px;margin-top:2px}
   .stat.green .n{color:var(--green)} .stat.amber .n{color:var(--amber)}
@@ -85,6 +86,20 @@
   .tag.alta{background:#fde8e7;color:var(--red)}
   .tag.media{background:#fcf2e0;color:var(--amber)}
   .tag.baixa{background:#e7f6ef;color:var(--green)}
+  .tag.muitoalta{background:var(--red);color:#fff}
+  .ala-h{font-size:13px;font-weight:700;color:var(--brand);margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .ala-h:first-child{margin-top:0}
+  .ala-n{background:var(--brand-soft);color:var(--brand);border-radius:20px;font-size:11px;padding:1px 8px}
+  .ala-empty{font-size:12px;color:var(--muted);padding:2px 0 6px}
+  #list-pat .item{padding:7px 4px}
+  #list-pat .item .t{font-size:12.5px}
+  #list-pat .item .meta{font-size:11px}
+  #list-pat .tag{font-size:10px;padding:1px 7px}
+  .subt{display:flex;align-items:center;gap:8px;font-size:12.5px;margin-top:4px}
+  .subt .schk{width:16px;height:16px;border:1.5px solid var(--line);border-radius:5px;cursor:pointer;text-align:center;font-size:10px;line-height:13px;flex:none;background:#fff}
+  .subt .schk.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .subt .st{flex:1}
+  .subt.done .st{text-decoration:line-through;color:var(--muted)}
   .del{margin-left:auto;border:none;background:none;color:var(--muted);font-size:16px;padding:2px 6px;border-radius:6px}
   .del:hover{background:#fde8e7;color:var(--red)}
   .empty{color:var(--muted);text-align:center;padding:26px 10px;font-size:13px}
@@ -94,7 +109,7 @@
   .cal-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
   .cal-head .mname{font-size:18px;font-weight:700;min-width:170px}
   .navb{border:1px solid var(--line);background:var(--panel);border-radius:8px;width:34px;height:34px;font-size:16px}
-  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;grid-auto-rows:1fr}
   .dow{font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;padding:4px 0;text-transform:uppercase}
   .day{min-height:96px;border:1px solid var(--line);border-radius:10px;padding:7px;background:var(--panel);cursor:pointer;display:flex;flex-direction:column;gap:3px}
   .day:hover{border-color:var(--brand)}
@@ -102,8 +117,14 @@
   .day.today{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft)}
   .day .dn{font-size:12.5px;font-weight:700;align-self:flex-end}
   .day.today .dn{color:var(--brand)}
-  .ev{font-size:11px;background:var(--brand-soft);color:var(--brand);border-radius:5px;padding:2px 5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .ev.deadline{background:#f3eafe;color:var(--purple)}
+  .ev{font-size:11px;background:none;color:var(--brand);border-radius:5px;padding:1px 0;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+  .ev.deadline{background:none;color:var(--purple)}
+  .day.pink{background:#fff0f6}
+  .ev.hol{background:none;color:#c2487f}
+  .swrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .sw{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);cursor:pointer}
+  .sw:hover{transform:scale(1.12);border-color:var(--brand)}
+  .sw.clr{background:#fff;color:var(--muted);font-size:13px;font-weight:700}
 
   /* Pesquisa global */
   .searchwrap{position:relative;margin-bottom:10px}
@@ -155,7 +176,7 @@
   .mact{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
   .quickadd{display:flex;gap:10px;margin-bottom:16px}
   .quickadd input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#fff}
-  @media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.kb{grid-template-columns:1fr 1fr}.side{width:64px}.side .label,.brand span,.side .foot{display:none}.nav{justify-content:center}}
+  @media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.kb{grid-template-columns:1fr 1fr}.side{width:96px;padding:10px 8px}.side .label,.brand span,.side .foot{display:none}.nav{justify-content:center;padding:8px 4px;gap:4px}.nav .ic{width:auto;font-size:27px}.nav .badge{font-size:10px;padding:1px 6px;min-width:16px;margin-left:0}}
 </style>
 </head>
 <body>
@@ -173,7 +194,7 @@
     <button class="nav" data-view="congressos"><span class="ic">🎤</span><span class="label">Congressos</span><span class="badge" id="b-con">0</span></button>
     <button class="nav" data-view="cursos"><span class="ic">🎓</span><span class="label">Cursos</span><span class="badge" id="b-cou">0</span></button>
     <button class="nav" data-view="estagios"><span class="ic">🧳</span><span class="label">Estágios fora</span><span class="badge" id="b-est">0</span></button>
-    <button class="nav" data-view="extra"><span class="ic">📌</span><span class="label">Pendentes extra</span><span class="badge" id="b-ext">0</span></button>
+    <button class="nav" data-view="extra"><span class="ic">📌</span><span class="label">Pendentes</span><span class="badge" id="b-ext">0</span></button>
     <button class="nav" data-view="notas" style="margin-top:auto"><span class="ic">📝</span><span class="label">Notas</span><span class="badge" id="b-not">0</span></button>
     <div class="bkrow">
       <button class="bkbtn save" id="ghBtn" onclick="openGitHub()">☁️ <span class="label">Ligar GitHub</span></button>
@@ -191,15 +212,15 @@
     <section class="view active" id="v-hoje">
       <div class="head"><div><h1 id="greet">Olá!</h1><div class="sub" id="todayStr"></div></div></div>
       <div class="grid stats card-row">
-        <div class="card stat purple"><div class="n" id="s-pat">0</div><div class="l">Doentes a ver</div></div>
-        <div class="card stat red"><div class="n" id="s-urg">0</div><div class="l">Tarefas urgentes</div></div>
-        <div class="card stat amber"><div class="n" id="s-tar">0</div><div class="l">Pendentes por fazer</div></div>
-        <div class="card stat brand"><div class="n" id="s-mail">0</div><div class="l">Emails por responder</div></div>
-        <div class="card stat green"><div class="n" id="s-job">0</div><div class="l">Trabalhos em curso</div></div>
+        <div class="card stat purple" onclick="goView('doentes')"><div class="n" id="s-pat">0</div><div class="l">Doentes a ver</div></div>
+        <div class="card stat red" onclick="goView('tarefas')"><div class="n" id="s-urg">0</div><div class="l">Tarefas urgentes</div></div>
+        <div class="card stat amber" onclick="goView('tarefas')"><div class="n" id="s-tar">0</div><div class="l">Pendentes por fazer</div></div>
+        <div class="card stat brand" onclick="goView('emails')"><div class="n" id="s-mail">0</div><div class="l">Emails por responder</div></div>
+        <div class="card stat green" onclick="goView('trabalhos')"><div class="n" id="s-job">0</div><div class="l">Trabalhos em curso</div></div>
       </div>
       <div class="grid two">
         <div class="card panel">
-          <h2 class="sec-title">🔥 O que é prioritário</h2>
+          <h2 class="sec-title">📌 Tarefas para hoje</h2>
           <div id="today-tasks"></div>
         </div>
         <div class="card panel">
@@ -287,7 +308,7 @@
 
     <!-- PENDENTES EXTRA -->
     <section class="view" id="v-extra">
-      <div class="head"><div><h1>Pendentes extra-trabalho 📌</h1><div class="sub">Tudo o que não é do trabalho mas tens de tratar.</div></div></div>
+      <div class="head"><div><h1>Pendentes 📌</h1><div class="sub">Tudo o que não é do trabalho mas tens de tratar.</div></div></div>
       <div class="card panel">
         <div class="quickadd">
           <input id="qa-ext" placeholder="Escreve um pendente e prime Enter…" onkeydown="if(event.key==='Enter')quickExtra()">
@@ -318,7 +339,7 @@
   <div class="modal" id="modal"></div>
 </div>
 
-<script id="agenda-data" type="application/json">{}</script>
+<script id="agenda-data" type="application/json">{"_savedAt":1781100000000,"tasks":[{"id":"tk01a","t":"Pedir dia de anos (Miu)","prio":"media","due":"","done":false},{"id":"tk02b","t":"Enviar documentos do estágio do Porto","prio":"alta","due":"","done":false},{"id":"tk03c","t":"Tirar certificado EUFOREA (e outros certificados)","prio":"media","due":"","done":false},{"id":"tk04d","t":"Questionário do Pedro","prio":"media","due":"","done":false},{"id":"tk05e","t":"Enviar trabalho para a prof.","prio":"media","due":"","done":false},{"id":"tk06f","t":"Ver consentimento","prio":"media","due":"","done":false},{"id":"tk07g","t":"Ir a consultas do Pedro","prio":"media","due":"","done":false},{"id":"tk08h","t":"Pré-medicação dos doentes a fazer IT","prio":"alta","due":"","done":false},{"id":"tk09i","t":"DECT — dar preferências de julho","prio":"alta","due":"","done":false},{"id":"tk10j","t":"Ver prémios SPAIC","prio":"baixa","due":"","done":false},{"id":"tk11k","t":"Ver agenda do HD (Hospital de Dia)","prio":"media","due":"","done":false},{"id":"tk12l","t":"Organizar dias de ausência","prio":"media","due":"","done":false},{"id":"tk13m","t":"Marcar férias 2026","prio":"media","due":"","done":false},{"id":"tk14n","t":"Bloquear outros dias (além de Peniche 24–27 set)","prio":"media","due":"","done":false}],"routines":[],"events":[{"id":"ev01a","t":"Reunião de Pneumologia","date":"2026-06-25","time":"","note":""},{"id":"ev02b","t":"Reunião de Pneumologia","date":"2026-06-26","time":"","note":""},{"id":"ev03c","t":"Peniche — bloquear","date":"2026-09-24","time":"","note":"Bloquear também outros dias"},{"id":"ev04d","t":"Peniche — bloquear","date":"2026-09-25","time":"","note":""},{"id":"ev05e","t":"Peniche — bloquear","date":"2026-09-26","time":"","note":""},{"id":"ev06f","t":"Peniche — bloquear","date":"2026-09-27","time":"","note":""},{"id":"ev07g","t":"Reunião LETI","date":"2026-10-02","time":"","note":""},{"id":"ev08h","t":"Reunião LETI","date":"2026-10-03","time":"","note":""},{"id":"ev09i","t":"Congresso BIRA","date":"2026-11-09","time":"","note":""},{"id":"ev10j","t":"Congresso BIRA","date":"2026-11-10","time":"","note":""},{"id":"ev11k","t":"Congresso BIRA","date":"2026-11-11","time":"","note":""}],"mails":[],"people":[{"id":"pp01a","name":"Carolina","subs":[{"t":"Avisar sobre a Iara","done":false}],"how":"Mensagem","done":false},{"id":"pp02b","name":"Clara (Probelt)","subs":[{"t":"Pedir — viagens também","done":false}],"how":"Mensagem","done":false},{"id":"pp03c","name":"Paula","subs":[{"t":"Autorizações TONI — confirmar se está tudo ok","done":false}],"how":"","done":false}],"patients":[{"id":"pt01a","name":"Lilia (proc. 8002833)","mot":"PPO amoxicilina","loc":"","prio":"media","due":"","done":false},{"id":"ptc01","name":"Mª Celeste Lourenço","mot":"13/01 — marcar consulta (7/10 13h30)","loc":"","prio":"media","due":"","done":false},{"id":"ptc02","name":"Liliana Isabel Filipe da Silva","mot":"09/02 — consentimento; triptase basal N; AINEs (?) alternativo — decidir","loc":"","prio":"media","due":"","done":false},{"id":"ptc03","name":"Gonçalo Pinto Magalhães","mot":"09/02 — P. metacolina neg.: s/ HRB; sintomas gástricos (?) — DRGE?","loc":"","prio":"media","due":"","done":false},{"id":"ptc04","name":"Inês Mota Ferreira","mot":"09/02 — pedir IgEs ácaros; descrever melhor sintomas; perguntar melhor sobre a História","loc":"","prio":"media","due":"","done":false},{"id":"ptc05","name":"Filipa Mariana Fernandes Martins","mot":"09/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc06","name":"Beatriz","mot":"10/02 — consentimentos; a dos venenos, faz Inderal — 9/09 8:30","loc":"","prio":"media","due":"","done":false},{"id":"ptc07","name":"Dulcínia (A)","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc08","name":"Mª de Lourdes","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc09","name":"João Afonso","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc10","name":"Beatriz","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc11","name":"Marlene","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc12","name":"Miguel Brusido","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc13","name":"Maria Bárbara","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc14","name":"Diogo","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc15","name":"Fernando","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc16","name":"Inês","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc17","name":"Licínia","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc18","name":"João Carvalho","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc19","name":"Maria Elisabete Pires (2)","mot":"25/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc20","name":"Miguel","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc21","name":"Inês Ferreira (2)","mot":"26/05 — falta ligar","loc":"","prio":"media","due":"","done":false},{"id":"ptc22","name":"Tiago Gomes","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptd01","name":"Cláudia Tavares (proc. 19025260)","mot":"Marcar consulta p/ outubro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd02","name":"Ana Salomé (proc. 9165363)","mot":"Marcar consulta para setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd03","name":"José Paulo Fonseca (proc. 9100213)","mot":"Agosto — marcar antes e depois da Prova","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd04","name":"Vanessa Vigário (proc. 19743078)","mot":"PC final de setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd05","name":"Vanessa Geral (proc. 9151790)","mot":"7/09 — telefónica e depois presencial","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd06","name":"Salvador Freire (proc. 22042029)","mot":"Marcar consulta para 2027","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte01","name":"Joana Ferreira (proc. 9333852)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte02","name":"Ana Luísa (proc. 14013872)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte03","name":"Afonso Violante","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte04","name":"Patrícia Marques (proc. 19001828)","mot":"Agendar consulta p/ janeiro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte05","name":"Estrela","mot":"Marcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"}],"congresses":[{"id":"cg01a","name":"Congresso BIRA","loc":"","due":"2026-11-09","note":"9 a 11 de novembro de 2026","done":false}],"courses":[{"id":"cu01a","name":"Cursos e-learning","loc":"online","due":"","note":"A escolher e fazer","done":false},{"id":"cu02b","name":"Curso fora","loc":"","due":"","note":"A definir — ver opções (Madrid? Santiago?)","done":false}],"internships":[{"id":"in01a","name":"Estágio no Porto","loc":"Porto","due":"","note":"Enviar documentos (ver Tarefas)","done":false},{"id":"in02b","name":"Ocupacional — Sastre","loc":"Madrid","due":"","note":"Opção de curso/estágio fora","done":false},{"id":"in03c","name":"Santiago","loc":"Santiago","due":"","note":"«stirtyst» — não percebi, confirmar","done":false}],"extra":[{"id":"ex01a","t":"Fazer IRS","prio":"alta","due":"2026-06-30","done":false},{"id":"ex02b","t":"Marcar consulta no dentista","prio":"media","due":"","done":false},{"id":"ex03c","t":"Cirurgião — mãe","prio":"alta","due":"","done":false}],"jobs":[],"notes":[{"id":"nt01a","title":"Revistas","text":"BMJ, JEAIC"},{"id":"nt02b","title":"Epiasma","text":"Epiasma — sem mais contexto, completa aqui"},{"id":"nt03c","title":"AECT score","text":"AECT score (Angioedema Control Test?)"},{"id":"nt04d","title":"OMZ","text":"TO antes do tx, T depois do tx"},{"id":"nt05e","title":"Physalis","text":"Ver physalis"},{"id":"nt06f","title":"Relatórios","text":"Relatório da Estrela: nada a acrescentar ao exame; sem relação ao relatório anterior, que se anexa.\nRelatório da Lília."}]}</script>
 <script>
 /* ---------- Estado ---------- */
 const KEY='minha_agenda_v1';
@@ -332,7 +353,7 @@ const COLS=[
 ];
 let db=load();
 
-function emptyBase(){return {tasks:[],routines:[],events:[],mails:[],people:[],patients:[],congresses:[],courses:[],internships:[],extra:[],jobs:[],notes:[]};}
+function emptyBase(){return {tasks:[],routines:[],events:[],mails:[],people:[],patients:[],congresses:[],courses:[],internships:[],extra:[],jobs:[],notes:[],dayColors:{}};}
 function readEmbedded(){
   try{const el=document.getElementById('agenda-data');if(el){const d=JSON.parse(el.textContent);if(d&&typeof d==='object'&&Object.keys(d).length)return d;}}catch(e){}
   return null;
@@ -384,6 +405,8 @@ const GH_KEY='agenda_gh';
 function loadGH(){try{return JSON.parse(localStorage.getItem(GH_KEY))||{};}catch(e){return {};}}
 const GH_PEND='agenda_gh_pending';
 let gh=loadGH(),ghSha=null,ghTimer=null,ghBusy=false,ghStatus='',ghPendingPush=localStorage.getItem(GH_PEND)==='1';
+/* Migração única (10 jun 2026): doentes passam a sincronizar como o resto dos dados */
+if(!localStorage.getItem('agenda_syncpat_v1')){if(gh.excludePatients!==false){gh.excludePatients=false;saveGH();}localStorage.setItem('agenda_syncpat_v1','1');}
 function saveGH(){localStorage.setItem(GH_KEY,JSON.stringify(gh));}
 function ghReady(){return !!(gh&&gh.token&&gh.owner&&gh.repo);}
 function ghPath(){return gh.path||'dados.json';}
@@ -420,13 +443,19 @@ async function ghPull(){
     const g=await ghGet();ghSha=g.sha;
     if(g.data){
       const remote=g.data;
-      if(gh.excludePatients)remote.patients=db.patients||[];
+      if(gh.excludePatients||!remote.patients)remote.patients=db.patients||[]; // nunca perder doentes locais se o remoto não os tiver
       // adota o GitHub se for diferente do local e não houver alterações próprias por enviar
       if(!ghPendingPush&&ghNorm(remote)!==ghNorm(db)){
         db=Object.assign(emptyBase(),remote);
         localStorage.setItem(KEY,JSON.stringify(db));render();
       }
     }
+    if(typeof mergeSeed==='function')mergeSeed(true);
+    if(typeof mergeSeedPtc==='function')mergeSeedPtc(true);
+    if(typeof seedNotas902==='function')seedNotas902(true);
+    if(typeof seedFolha5==='function')seedFolha5(true);
+    if(typeof seedFolha4==='function')seedFolha4(true);
+    if(typeof migrAlas==='function')migrAlas(true);
     setGhStatus('GitHub ligado ✓ '+new Date().toLocaleTimeString('pt-PT'));
   }catch(e){setGhStatus('Erro: '+e.message);}
 }
@@ -452,7 +481,7 @@ function openGitHub(){
   <div class="fld"><label>Repositório</label><input id="gh-r" value="${esc(gh.repo||'')}" placeholder="A-minha-agenda"></div>
   <div class="fld"><label>Ramo (branch)</label><input id="gh-b" value="${esc(gh.branch||'main')}"></div>
   <div class="fld"><label>Token de acesso</label><input id="gh-t" type="password" value="${esc(gh.token||'')}" placeholder="github_pat_..."></div>
-  <div class="fld"><label style="display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer"><input type="checkbox" id="gh-x" ${gh.excludePatients!==false?'checked':''} style="width:auto"> Não sincronizar Doentes (mais privado)</label></div>
+  <div class="fld"><label style="display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer"><input type="checkbox" id="gh-x" ${gh.excludePatients?'checked':''} style="width:auto"> Não sincronizar Doentes (mais privado)</label></div>
   <div id="gh-status" style="font-size:12px;color:var(--muted);margin-bottom:8px">${esc(ghStatus||'')}</div>
   <div class="mact"><button class="btn ghost" onclick="ghDisconnect()">Desligar</button><button class="btn" onclick="saveGitHub()">Guardar e ligar</button></div>`);
 }
@@ -552,21 +581,39 @@ function quickTask(){
   db.tasks.push({id:uid(),t:i.value.trim(),prio:'media',due:'',done:false});
   i.value='';save();
 }
-let editTaskId=null;
+let editTaskId=null,editSubsT=[];
+const PRIOL={muitoalta:'muito alta',alta:'alta',media:'média',baixa:'baixa'};
 function openTask(id){
   const x=id?db.tasks.find(k=>k.id===id):null;editTaskId=x?id:null;
+  editSubsT=x&&x.subs?JSON.parse(JSON.stringify(x.subs)):[];
   showModal(`<h2>${x?'Editar tarefa':'Nova tarefa'}</h2>
   <div class="fld"><label>Descrição</label><input id="f-t" placeholder="O que tens de fazer" value="${x?esc(x.t):''}"></div>
-  <div class="fld"><label>Prioridade</label><select id="f-p"><option value="alta" ${x&&x.prio==='alta'?'selected':''}>Alta</option><option value="media" ${!x||x.prio==='media'?'selected':''}>Média</option><option value="baixa" ${x&&x.prio==='baixa'?'selected':''}>Baixa</option></select></div>
+  <div class="fld"><label>Prioridade</label><select id="f-p"><option value="muitoalta" ${x&&x.prio==='muitoalta'?'selected':''}>Muito alta 🔥</option><option value="alta" ${x&&x.prio==='alta'?'selected':''}>Alta</option><option value="media" ${!x||x.prio==='media'?'selected':''}>Média</option><option value="baixa" ${x&&x.prio==='baixa'?'selected':''}>Baixa</option></select></div>
   <div class="fld"><label>Prazo</label><input id="f-d" type="date" value="${x?(x.due||''):''}"></div>
+  <div class="fld"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none"><input type="checkbox" id="f-cal" ${x&&x.cal?'checked':''} style="width:16px;height:16px;accent-color:var(--brand)"> Mostrar o prazo no calendário 🗓️</label></div>
+  <div class="fld"><label>Subtarefas</label><div id="subs-m"></div>
+    <div style="display:flex;gap:8px;margin-top:6px"><input id="f-sub" placeholder="Nova subtarefa…" onkeydown="if(event.key==='Enter'){event.preventDefault();addSubT();}"><button type="button" class="btn ghost" onclick="addSubT()">+ Juntar</button></div></div>
   <div class="mact"><button class="btn ghost" onclick="closeModal()">Cancelar</button><button class="btn" onclick="saveTask()">Guardar</button></div>`);
+  paintSubsT();
 }
+function paintSubsT(){
+  const e=document.getElementById('subs-m');if(!e)return;
+  e.innerHTML=editSubsT.length?editSubsT.map(s=>`<div class="subt ${s.done?'done':''}">
+    <div class="schk ${s.done?'on':''}" onclick="toggleSubTM('${s.id}')">${s.done?'✓':''}</div>
+    <div class="st">${esc(s.t)}</div>
+    <button type="button" class="del" onclick="delSubTM('${s.id}')">🗑</button></div>`).join('')
+  :`<div style="font-size:12px;color:var(--muted)">Sem subtarefas.</div>`;
+}
+function addSubT(){const i=document.getElementById('f-sub');const t=i.value.trim();if(!t)return;editSubsT.push({id:uid(),t,done:false});i.value='';paintSubsT();i.focus();}
+function toggleSubTM(id){const s=editSubsT.find(k=>k.id===id);if(s)s.done=!s.done;paintSubsT();}
+function delSubTM(id){editSubsT=editSubsT.filter(k=>k.id!==id);paintSubsT();}
+function toggleSubT(tid,sid){const x=db.tasks.find(t=>t.id===tid);const s=x&&(x.subs||[]).find(k=>k.id===sid);if(s){s.done=!s.done;save();}}
 function saveTask(){
   const t=document.getElementById('f-t').value.trim();if(!t)return;
-  const prio=document.getElementById('f-p').value,due=document.getElementById('f-d').value;
-  if(editTaskId){const x=db.tasks.find(k=>k.id===editTaskId);if(x){x.t=t;x.prio=prio;x.due=due;}}
-  else db.tasks.push({id:uid(),t,prio,due,done:false});
-  editTaskId=null;closeModal();save();
+  const prio=document.getElementById('f-p').value,due=document.getElementById('f-d').value,cal=document.getElementById('f-cal').checked;
+  if(editTaskId){const x=db.tasks.find(k=>k.id===editTaskId);if(x){x.t=t;x.prio=prio;x.due=due;x.cal=cal;x.subs=editSubsT;}}
+  else db.tasks.push({id:uid(),t,prio,due,cal,done:false,subs:editSubsT});
+  editTaskId=null;editSubsT=[];closeModal();save();
 }
 function toggleTask(id){const x=db.tasks.find(t=>t.id===id);x.done=!x.done;save();}
 function delTask(id){db.tasks=db.tasks.filter(t=>t.id!==id);save();}
@@ -575,7 +622,7 @@ function renderTasks(){
   const el=document.getElementById('list-tar');
   const sorted=[...db.tasks].sort((a,b)=>{
     if(a.done!==b.done)return a.done?1:-1;
-    const p={alta:0,media:1,baixa:2};
+    const p={muitoalta:0,alta:1,media:2,baixa:3};
     if(p[a.prio]!==p[b.prio])return p[a.prio]-p[b.prio];
     return (a.due||'9')<(b.due||'9')?-1:1;
   });
@@ -584,8 +631,9 @@ function renderTasks(){
     return `<div class="item ${t.done?'done':''}">
       <div class="chk ${t.done?'on':''}" onclick="toggleTask('${t.id}')">${t.done?'🐾':''}</div>
       <div class="body" style="cursor:pointer" onclick="openTask('${t.id}')" title="Clica para editar"><div class="t">${esc(t.t)}</div>
-        <div class="meta"><span class="tag ${t.prio}">${t.prio}</span>
-        ${t.due?`<span class="${late?'due-late':''}">📅 ${fmt(t.due)}${late?' (atrasado)':''}</span>`:''}</div></div>
+        <div class="meta"><span class="tag ${t.prio}">${PRIOL[t.prio]||t.prio}</span>
+        ${t.due?`<span class="${late?'due-late':''}">📅 ${fmt(t.due)}${late?' (atrasado)':''}</span>`:''}${t.cal&&t.due?`<span>🗓️ no calendário</span>`:''}</div>
+        ${(t.subs||[]).map(s=>`<div class="subt ${s.done?'done':''}"><div class="schk ${s.done?'on':''}" onclick="event.stopPropagation();toggleSubT('${t.id}','${s.id}')">${s.done?'✓':''}</div><div class="st">${esc(s.t)}</div></div>`).join('')}</div>
       <button class="del" onclick="delTask('${t.id}')">🗑</button></div>`;
   }).join(''):`<div class="empty">Sem tarefas. O gatinho aprova. 😸</div>`;
 }
@@ -714,35 +762,46 @@ function openPat(id){
   showModal(`<h2>${x?'Editar doente':'Doente a ver'}</h2>
   <div class="fld"><label>Nome / identificação</label><input id="d-name" placeholder="Ex: Sr. Costa, cama 12" value="${x?esc(x.name):''}"></div>
   <div class="fld"><label>Motivo / o que ver</label><input id="d-mot" placeholder="Ex: rever análises, alta, penso" value="${x?esc(x.mot||''):''}"></div>
+  <div class="fld"><label>Ala</label><select id="d-ala">
+    <option value="diarios" ${x&&x.ala==='diarios'?'selected':''}>Diários por escrever</option>
+    <option value="remarcar" ${x&&x.ala==='remarcar'?'selected':''}>Consultas por remarcar</option>
+    <option value="discutir" ${x&&x.ala==='discutir'?'selected':''}>Doentes para discutir</option>
+    <option value="outros" ${!x||!x.ala||x.ala==='outros'?'selected':''}>Outros</option></select></div>
   <div class="fld"><label>Serviço / local</label><input id="d-loc" placeholder="Ex: Medicina B, quarto 4" value="${x?esc(x.loc||''):''}"></div>
   <div class="fld"><label>Urgência</label><select id="d-prio"><option value="alta" ${x&&x.prio==='alta'?'selected':''}>Urgente</option><option value="media" ${!x||x.prio==='media'?'selected':''}>Normal</option><option value="baixa" ${x&&x.prio==='baixa'?'selected':''}>Pode esperar</option></select></div>
   <div class="fld"><label>Data</label><input id="d-due" type="date" value="${x?(x.due||''):todayISO}"></div>
+  <div class="fld"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none"><input type="checkbox" id="d-cal" ${x&&x.cal?'checked':''} style="width:16px;height:16px;accent-color:var(--brand)"> Mostrar no calendário 🗓️</label></div>
   <div class="mact"><button class="btn ghost" onclick="closeModal()">Cancelar</button><button class="btn" onclick="savePat()">Guardar</button></div>`);
 }
 function savePat(){
   const name=document.getElementById('d-name').value.trim();if(!name)return;
   const mot=document.getElementById('d-mot').value.trim(),loc=document.getElementById('d-loc').value.trim(),
-    prio=document.getElementById('d-prio').value,due=document.getElementById('d-due').value;
-  if(editPatId){const x=db.patients.find(k=>k.id===editPatId);if(x){x.name=name;x.mot=mot;x.loc=loc;x.prio=prio;x.due=due;}}
-  else db.patients.push({id:uid(),name,mot,loc,prio,due,done:false});
+    prio=document.getElementById('d-prio').value,due=document.getElementById('d-due').value,ala=document.getElementById('d-ala').value,cal=document.getElementById('d-cal').checked;
+  if(editPatId){const x=db.patients.find(k=>k.id===editPatId);if(x){x.name=name;x.mot=mot;x.loc=loc;x.prio=prio;x.due=due;x.ala=ala;x.cal=cal;}}
+  else db.patients.push({id:uid(),name,mot,loc,prio,due,ala,cal,done:false});
   editPatId=null;closeModal();save();
 }
 function togglePat(id){const x=db.patients.find(p=>p.id===id);x.done=!x.done;save();}
 function delPat(id){db.patients=db.patients.filter(p=>p.id!==id);save();}
 const PRIOLBL={alta:'urgente',media:'normal',baixa:'pode esperar'};
+const ALAS=[['diarios','📝 Diários por escrever'],['remarcar','📞 Consultas por remarcar'],['discutir','💬 Doentes para discutir'],['outros','📋 Outros']];
 function renderPat(){
   const el=document.getElementById('list-pat');
-  const s=[...db.patients].sort((a,b)=>{
+  const sortP=(a,b)=>{
     if(a.done!==b.done)return a.done?1:-1;
     const p={alta:0,media:1,baixa:2};return p[a.prio]-p[b.prio]||((a.due||'9')<(b.due||'9')?-1:1);
-  });
-  el.innerHTML=s.length?s.map(p=>`<div class="item ${p.done?'done':''}">
+  };
+  const item=p=>`<div class="item ${p.done?'done':''}">
     <div class="chk ${p.done?'on':''}" onclick="togglePat('${p.id}')">${p.done?'🐾':''}</div>
     <div class="body" style="cursor:pointer" onclick="openPat('${p.id}')" title="Clica para editar"><div class="t">${esc(p.name)}</div>
       <div class="meta"><span class="tag ${p.prio}">${PRIOLBL[p.prio]}</span>
       ${p.mot?esc(p.mot):''}${p.loc?` · 📍 ${esc(p.loc)}`:''}${p.due?` · 📅 ${fmt(p.due)}`:''}</div></div>
-    <button class="del" onclick="delPat('${p.id}')">🗑</button></div>`).join('')
-    :`<div class="empty">Sem doentes em lista. 🩺</div>`;
+    <button class="del" onclick="delPat('${p.id}')">🗑</button></div>`;
+  el.innerHTML=ALAS.map(([k,nome])=>{
+    const lst=db.patients.filter(p=>(p.ala||'outros')===k).sort(sortP);
+    return `<div class="ala-h">${nome} <span class="ala-n">${lst.filter(p=>!p.done).length}</span></div>`+
+      (lst.length?lst.map(item).join(''):`<div class="ala-empty">Sem doentes nesta ala. 🩺</div>`);
+  }).join('');
 }
 
 /* ---------- CONGRESSOS ---------- */
@@ -753,14 +812,15 @@ function openCon(id){
   <div class="fld"><label>Nome</label><input id="g-name" placeholder="Ex: Congresso Nacional de…" value="${x?esc(x.name):''}"></div>
   <div class="fld"><label>Local</label><input id="g-loc" placeholder="Ex: Lisboa / online" value="${x?esc(x.loc||''):''}"></div>
   <div class="fld"><label>Data</label><input id="g-due" type="date" value="${x?(x.due||''):''}"></div>
+  <div class="fld"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none"><input type="checkbox" id="g-cal" ${x&&x.cal===false?'':'checked'} style="width:16px;height:16px;accent-color:var(--brand)"> Mostrar no calendário 🗓️</label></div>
   <div class="fld"><label>Notas (inscrição, resumo, viagem…)</label><textarea id="g-note">${x?esc(x.note||''):''}</textarea></div>
   <div class="mact"><button class="btn ghost" onclick="closeModal()">Cancelar</button><button class="btn" onclick="saveCon()">Guardar</button></div>`);
 }
 function saveCon(){
   const name=document.getElementById('g-name').value.trim();if(!name)return;
-  const loc=document.getElementById('g-loc').value.trim(),due=document.getElementById('g-due').value,note=document.getElementById('g-note').value.trim();
-  if(editConId){const x=db.congresses.find(k=>k.id===editConId);if(x){x.name=name;x.loc=loc;x.due=due;x.note=note;}}
-  else db.congresses.push({id:uid(),name,loc,due,note,done:false});
+  const loc=document.getElementById('g-loc').value.trim(),due=document.getElementById('g-due').value,note=document.getElementById('g-note').value.trim(),cal=document.getElementById('g-cal').checked;
+  if(editConId){const x=db.congresses.find(k=>k.id===editConId);if(x){x.name=name;x.loc=loc;x.due=due;x.note=note;x.cal=cal;}}
+  else db.congresses.push({id:uid(),name,loc,due,note,cal,done:false});
   editConId=null;closeModal();save();
 }
 function toggleCon(id){const x=db.congresses.find(c=>c.id===id);x.done=!x.done;save();}
@@ -1000,6 +1060,10 @@ function openEvent(date,id){
   <div class="fld"><label>Data</label><input id="e-d" type="date" value="${x?x.date:(date||todayISO)}"></div>
   <div class="fld"><label>Hora (opcional)</label><input id="e-h" type="time" value="${x?(x.time||''):''}"></div>
   <div class="fld"><label>Notas</label><textarea id="e-n" placeholder="Local, detalhes…">${x?esc(x.note||''):''}</textarea></div>
+  <div class="fld"><label>Cor de fundo do dia 🎨</label><div class="swrow">
+    ${DAYCOLORS.map(c=>`<button type="button" class="sw" style="background:${c}" title="Pintar o dia" onclick="setDayColor(document.getElementById('e-d').value,'${c}')"></button>`).join('')}
+    <button type="button" class="sw clr" title="Tirar a cor" onclick="setDayColor(document.getElementById('e-d').value,'')">✕</button>
+  </div></div>
   <div class="mact">${x?`<button class="btn ghost" style="color:var(--red);border-color:#fde8e7;margin-right:auto" onclick="delEventModal('${id}')">🗑 Apagar</button>`:''}<button class="btn ghost" onclick="closeModal()">Cancelar</button><button class="btn" onclick="saveEvent()">Guardar</button></div>`);
 }
 function delEventModal(id){
@@ -1014,7 +1078,37 @@ function saveEvent(){
   editEventId=null;closeModal();save();
 }
 function delEvent(id){db.events=db.events.filter(e=>e.id!==id);save();}
+const DAYCOLORS=['#ffedf5','#f6f0fe','#eef7ff','#effbf3','#fffbe9','#fff3ec'];
+/* Cores antigas (mais fortes) já guardadas → versão clara, só no ecrã */
+const DAYLIGHT={'#ffd6e8':'#ffedf5','#e9dcfd':'#f6f0fe','#d8ecff':'#eef7ff','#dcf6e3':'#effbf3','#fff3c9':'#fffbe9','#ffe3d2':'#fff3ec'};
+function setDayColor(di,c){if(!di)return;if(!db.dayColors)db.dayColors={};if(c)db.dayColors[di]=c;else delete db.dayColors[di];closeModal();save();}
+/* Feriados nacionais de Portugal (qualquer ano; móveis via cálculo da Páscoa) */
+function easterDate(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da);}
+const _hol={};
+function holidaysPT(y){
+  if(_hol[y])return _hol[y];
+  const p=easterDate(y),add=(dt,n)=>{const z=new Date(dt);z.setDate(z.getDate()+n);return z;};
+  const H={};const put=(d,n)=>{H[iso(d)]=n;};
+  put(new Date(y,0,1),'Ano Novo');put(add(p,-47),'Carnaval');put(add(p,-2),'Sexta-feira Santa');put(p,'Páscoa');
+  put(new Date(y,3,25),'25 de Abril');put(new Date(y,4,1),'Dia do Trabalhador');put(add(p,60),'Corpo de Deus');
+  put(new Date(y,5,10),'Dia de Portugal');put(new Date(y,7,15),'Assunção de Nossa Senhora');
+  put(new Date(y,9,5),'Implantação da República');put(new Date(y,10,1),'Todos os Santos');
+  put(new Date(y,11,1),'Restauração da Independência');put(new Date(y,11,8),'Imaculada Conceição');put(new Date(y,11,25),'Natal');
+  _hol[y]=H;return H;
+}
 function shiftMonth(n){view=new Date(view.getFullYear(),view.getMonth()+n,1);renderCal();}
+/* Deslizar com o dedo no calendário para mudar de mês (ecrã táctil) */
+(function(){
+  const g=document.getElementById('grid');if(!g)return;
+  let x0=null,y0=null;
+  g.addEventListener('touchstart',e=>{if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+  g.addEventListener('touchend',e=>{
+    if(x0===null)return;
+    const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+    x0=y0=null;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)shiftMonth(dx<0?1:-1);
+  },{passive:true});
+})();
 function toToday(){view=new Date(today.getFullYear(),today.getMonth(),1);renderCal();}
 function renderCal(){
   document.getElementById('mname').textContent=view.toLocaleDateString('pt-PT',{month:'long',year:'numeric'});
@@ -1026,12 +1120,16 @@ function renderCal(){
   for(let i=0;i<42;i++){
     const d=new Date(view.getFullYear(),view.getMonth(),1-start+i);
     const di=iso(d);const out=d.getMonth()!==view.getMonth();
+    const hol=holidaysPT(d.getFullYear())[di]||'';
+    const we=d.getDay()===0||d.getDay()===6;
+    let custom=(db.dayColors||{})[di]||'';custom=DAYLIGHT[custom]||custom;
     const evs=db.events.filter(e=>e.date===di).sort((a,b)=>(a.time||'')<(b.time||'')?-1:1);
     const chips=[
+      ...(hol?[`<div class="ev hol" title="Feriado: ${hol}">🎀 ${hol}</div>`]:[]),
       ...evs.map(e=>`<div class="ev" title="${esc(e.t)} — clica para editar" onclick="event.stopPropagation();openEvent(null,'${e.id}')">${e.time?e.time+' ':''}${esc(e.t)}</div>`),
       ...dayDeadlines(di).map(p=>`<div class="ev deadline" title="${esc(p.t)} — clica para ir à secção" onclick="event.stopPropagation();goView('${p.v}')">${p.ic} ${esc(p.t)}</div>`)
     ];
-    cells+=`<div class="day ${out?'out':''} ${di===todayISO?'today':''}" onclick="openEvent('${di}')">
+    cells+=`<div class="day ${out?'out':''} ${di===todayISO?'today':''} ${(we||hol)?'pink':''}"${custom?` style="background:${custom}"`:''} onclick="openEvent('${di}')">
       <div class="dn">${d.getDate()}</div>
       ${chips.slice(0,3).join('')}
       ${chips.length>3?`<div class="ev" style="background:none;color:var(--muted)">+${chips.length-3} mais</div>`:''}
@@ -1041,10 +1139,10 @@ function renderCal(){
 }
 function dayDeadlines(di){
   const out=[];
-  (db.tasks||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'✅',t:x.t,v:'tarefas'}));
+  (db.tasks||[]).filter(x=>x.due===di&&!x.done&&x.cal).forEach(x=>out.push({ic:'✅',t:x.t,v:'tarefas'}));
   (db.mails||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'✉️',t:x.who||x.sub,v:'emails'}));
-  (db.patients||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'🩺',t:x.name,v:'doentes'}));
-  (db.congresses||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'🎤',t:x.name,v:'congressos'}));
+  (db.patients||[]).filter(x=>x.due===di&&!x.done&&x.cal).forEach(x=>out.push({ic:'🩺',t:x.name,v:'doentes'}));
+  (db.congresses||[]).filter(x=>x.due===di&&!x.done&&x.cal!==false).forEach(x=>out.push({ic:'🎤',t:x.name,v:'congressos'}));
   (db.courses||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'🎓',t:x.name,v:'cursos'}));
   (db.internships||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'🧳',t:x.name,v:'estagios'}));
   (db.extra||[]).filter(x=>x.due===di&&!x.done).forEach(x=>out.push({ic:'📌',t:x.t,v:'extra'}));
@@ -1059,18 +1157,20 @@ function renderHoje(){
   document.getElementById('todayStr').textContent=today.toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   document.getElementById('s-pat').textContent=db.patients.filter(p=>!p.done).length;
   const openTasks=db.tasks.filter(t=>!t.done);
-  const urg=openTasks.filter(t=>t.prio==='alta'||(t.due&&t.due<=todayISO));
+  const urg=openTasks.filter(t=>t.prio==='muitoalta'||t.prio==='alta'||(t.due&&t.due<=todayISO));
   document.getElementById('s-urg').textContent=urg.length;
   document.getElementById('s-tar').textContent=openTasks.length;
   document.getElementById('s-mail').textContent=db.mails.filter(m=>!m.done).length;
   document.getElementById('s-job').textContent=db.jobs.filter(j=>j.col==='doing'||j.col==='almost').length;
   // prioritárias
-  const prio=[...openTasks].sort((a,b)=>{const p={alta:0,media:1,baixa:2};return p[a.prio]-p[b.prio]||((a.due||'9')<(b.due||'9')?-1:1);}).slice(0,6);
-  document.getElementById('today-tasks').innerHTML=prio.length?prio.map(t=>{
-    const late=t.due&&t.due<todayISO;
+  const hoje=openTasks.filter(t=>t.due&&t.due<=todayISO).sort((a,b)=>{const p={muitoalta:0,alta:1,media:2,baixa:3};return (a.due<b.due?-1:a.due>b.due?1:0)||p[a.prio]-p[b.prio];});
+  document.getElementById('today-tasks').innerHTML=hoje.length?hoje.map(t=>{
+    const late=t.due<todayISO;
+    const subs=t.subs||[];
     return `<div class="item"><div class="chk" onclick="toggleTask('${t.id}')"></div>
-    <div class="body" style="cursor:pointer" onclick="openTask('${t.id}')" title="Clica para editar"><div class="t">${esc(t.t)}</div><div class="meta"><span class="tag ${t.prio}">${t.prio}</span>${t.due?`<span class="${late?'due-late':''}">📅 ${fmt(t.due)}</span>`:''}</div></div></div>`;
-  }).join(''):`<div class="empty">Nada urgente agora. ✨</div>`;
+    <div class="body" style="cursor:pointer" onclick="openTask('${t.id}')" title="Clica para editar"><div class="t">${esc(t.t)}</div><div class="meta"><span class="tag ${t.prio}">${PRIOL[t.prio]||t.prio}</span><span class="${late?'due-late':''}">📅 ${fmt(t.due)}${late?' (atrasada)':''}</span>${subs.length?`<span>📋 ${subs.filter(s=>s.done).length}/${subs.length}</span>`:''}</div>
+    ${subs.map(s=>`<div class="subt ${s.done?'done':''}"><div class="schk ${s.done?'on':''}" onclick="event.stopPropagation();toggleSubT('${t.id}','${s.id}')">${s.done?'✓':''}</div><div class="st">${esc(s.t)}</div></div>`).join('')}</div></div>`;
+  }).join(''):`<div class="empty">Sem tarefas para hoje. ✨</div>`;
   // eventos de hoje
   const te=db.events.filter(e=>e.date===todayISO).sort((a,b)=>(a.time||'')<(b.time||'')?-1:1);
   document.getElementById('today-events').innerHTML=te.length?te.map(e=>`<div class="item">
@@ -1094,6 +1194,98 @@ function render(){
   document.getElementById('b-job').textContent=db.jobs.filter(j=>j.col!=='done').length;
   document.getElementById('b-not').textContent=db.notes.length;
 }
+/* ---------- Importação única dos itens novos (10 jun 2026, v2) ---------- */
+function mergeSeed(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v2'))return;
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    ['tasks','routines','events','mails','people','patients','congresses','courses','internships','extra','jobs','notes'].forEach(k=>{
+      (seed[k]||[]).forEach(it=>{
+        if(!db[k])db[k]=[];
+        if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
+      });
+    });
+    if(final)localStorage.setItem('agenda_seed_v2','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+mergeSeed(!ghReady());
+/* ---------- Importação única v3 (10 jun 2026) — doentes da folha de consultas (ptc*) ---------- */
+function mergeSeedPtc(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v3'))return;
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    ['patients'].forEach(k=>{
+      (seed[k]||[]).filter(it=>String(it.id).startsWith('ptc')).forEach(it=>{
+        if(!db[k])db[k]=[];
+        if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
+      });
+    });
+    if(final)localStorage.setItem('agenda_seed_v3','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+mergeSeedPtc(!ghReady());
+/* ---------- Importação única v4 (10 jun 2026) — notas da folha de consultas de 9/02 nos doentes existentes ---------- */
+function seedNotas902(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v4'))return;
+    const novos={
+      'ptc02':'09/02 — consentimento; triptase basal N; AINEs (?) alternativo — decidir',
+      'ptc03':'09/02 — P. metacolina neg.: s/ HRB; sintomas gástricos (?) — DRGE?',
+      'ptc04':'09/02 — pedir IgEs ácaros; descrever melhor sintomas; perguntar melhor sobre a História'
+    };
+    let changed=false;
+    (db.patients||[]).forEach(p=>{if(novos[p.id]&&p.mot!==novos[p.id]){p.mot=novos[p.id];changed=true;}});
+    if(final)localStorage.setItem('agenda_seed_v4','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+seedNotas902(!ghReady());
+/* ---------- Importação única v5 (10 jun 2026) — Folha 5 do caderno: consultas a marcar (ptd*) ---------- */
+function seedFolha5(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v5'))return;
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    (seed.patients||[]).filter(it=>String(it.id).startsWith('ptd')).forEach(it=>{
+      if(!db.patients)db.patients=[];
+      if(!db.patients.some(x=>x.id===it.id)){db.patients.push(it);changed=true;}
+    });
+    if(final)localStorage.setItem('agenda_seed_v5','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+seedFolha5(!ghReady());
+/* ---------- Importação única v6 (10 jun 2026) — Folha 4: consultas a remarcar (pte*), Paula (pp03*), nota Relatórios (nt06*) ---------- */
+function seedFolha4(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v6'))return;
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    const add=(k,pref)=>{(seed[k]||[]).filter(it=>String(it.id).startsWith(pref)).forEach(it=>{
+      if(!db[k])db[k]=[];
+      if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
+    });};
+    add('patients','pte');add('people','pp03');add('notes','nt06');
+    if(final)localStorage.setItem('agenda_seed_v6','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+seedFolha4(!ghReady());
+/* Migração única: doentes existentes -> ala "diarios", exceto Lília -> "outros" */
+function migrAlas(final){
+  try{
+    if(localStorage.getItem('agenda_alas_v1'))return;
+    let changed=false;
+    (db.patients||[]).forEach(p=>{if(!p.ala){p.ala=/l[ií]lia/i.test(p.name||'')?'outros':'diarios';changed=true;}});
+    if(final)localStorage.setItem('agenda_alas_v1','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+migrAlas(!ghReady());
 render();updateSaveBtn();updateGhBtn();
 if(ghReady())ghPull().then(()=>{if(ghPendingPush)ghPushNow();});
 window.addEventListener('focus',()=>{if(ghReady()&&!ghBusy)ghPull();});
