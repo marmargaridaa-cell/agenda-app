@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Minha Agenda — v5</title>
+<title>A Minha Agenda — v6</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -353,7 +353,20 @@ const COLS=[
 ];
 let db=load();
 
-function emptyBase(){return {tasks:[],routines:[],events:[],mails:[],people:[],patients:[],congresses:[],courses:[],internships:[],extra:[],jobs:[],notes:[],dayColors:{}};}
+function emptyBase(){return {tasks:[],routines:[],events:[],mails:[],people:[],patients:[],congresses:[],courses:[],internships:[],extra:[],jobs:[],notes:[],dayColors:{},trash:[]};}
+/* ---------- Lixeira (11 jun 2026): ids apagados nunca voltam, venham de seeds, dados embebidos ou de outro dispositivo ---------- */
+function trashAdd(id){if(!db.trash)db.trash=[];if(!db.trash.includes(id)){db.trash.push(id);if(db.trash.length>1000)db.trash=db.trash.slice(-1000);}}
+function applyTrash(d){
+  if(!d||!Array.isArray(d.trash)||!d.trash.length)return false;
+  let ch=false;
+  Object.keys(d).forEach(k=>{
+    if(k!=='trash'&&Array.isArray(d[k])){
+      const n=d[k].filter(x=>!(x&&x.id!==undefined&&d.trash.includes(x.id)));
+      if(n.length!==d[k].length){d[k]=n;ch=true;}
+    }
+  });
+  return ch;
+}
 function readEmbedded(){
   try{const el=document.getElementById('agenda-data');if(el){const d=JSON.parse(el.textContent);if(d&&typeof d==='object'&&Object.keys(d).length)return d;}}catch(e){}
   return null;
@@ -364,7 +377,9 @@ function load(){
   let chosen;
   if(emb&&ls)chosen=((ls._savedAt||0)>=(emb._savedAt||0))?ls:emb;
   else chosen=emb||ls;
-  return Object.assign(emptyBase(),chosen||{});
+  const base=Object.assign(emptyBase(),chosen||{});
+  applyTrash(base); /* o que foi apagado não volta, mesmo a partir de dados embebidos antigos */
+  return base;
 }
 let fileHandle=null,fileDirty=false;
 const DYN=['list-tar','list-rot','list-mail','list-ppl','list-pat','list-con','list-cou','list-est','list-ext','list-not','kanban','grid','dows','today-tasks','today-events','sres'];
@@ -444,13 +459,22 @@ async function ghPull(){
     if(g.data){
       const remote=g.data;
       if(gh.excludePatients||!remote.patients)remote.patients=db.patients||[]; // nunca perder doentes locais se o remoto não os tiver
+      /* lixeira: juntar os ids apagados locais e remotos — apagados nunca ressuscitam */
+      const tr=[...new Set([...(remote.trash||[]),...(db.trash||[])])];
+      const trashNovo=tr.length>(remote.trash||[]).length;
+      remote.trash=tr;applyTrash(remote);
       // adota o GitHub se for diferente do local e não houver alterações próprias por enviar
       if(!ghPendingPush&&ghNorm(remote)!==ghNorm(db)){
         db=Object.assign(emptyBase(),remote);
         localStorage.setItem(KEY,JSON.stringify(db));render();
+        if(trashNovo)ghSchedulePush(); // o remoto não conhecia estes apagados — enviar
+      }else if(ghPendingPush){
+        // mesmo com alterações por enviar, respeitar primeiro o que foi apagado noutro dispositivo
+        db.trash=tr;
+        if(applyTrash(db))render();
+        localStorage.setItem(KEY,JSON.stringify(db));
       }
     }
-    if(typeof mergeSeed==='function')mergeSeed(true);
     if(typeof mergeSeedPtc==='function')mergeSeedPtc(true);
     if(typeof seedNotas902==='function')seedNotas902(true);
     if(typeof seedFolha5==='function')seedFolha5(true);
@@ -616,7 +640,7 @@ function saveTask(){
   editTaskId=null;editSubsT=[];closeModal();save();
 }
 function toggleTask(id){const x=db.tasks.find(t=>t.id===id);x.done=!x.done;save();}
-function delTask(id){db.tasks=db.tasks.filter(t=>t.id!==id);save();}
+function delTask(id){trashAdd(id);db.tasks=db.tasks.filter(t=>t.id!==id);save();}
 
 function renderTasks(){
   const el=document.getElementById('list-tar');
@@ -667,7 +691,7 @@ function toggleRoutine(id){
   const r=db.routines.find(x=>x.id===id);if(!r)return;
   if(!r.done)r.done={}; const k=periodKey(r.freq); r.done[k]=!r.done[k]; save();
 }
-function delRoutine(id){db.routines=db.routines.filter(r=>r.id!==id);save();}
+function delRoutine(id){trashAdd(id);db.routines=db.routines.filter(r=>r.id!==id);save();}
 function renderRoutines(){
   const el=document.getElementById('list-rot');
   const s=[...db.routines].sort((a,b)=>a.freq<b.freq?-1:1);
@@ -702,7 +726,7 @@ function saveMail(){
   editMailId=null;closeModal();save();
 }
 function toggleMail(id){const x=db.mails.find(m=>m.id===id);x.done=!x.done;save();}
-function delMail(id){db.mails=db.mails.filter(m=>m.id!==id);save();}
+function delMail(id){trashAdd(id);db.mails=db.mails.filter(m=>m.id!==id);save();}
 function renderMails(){
   const el=document.getElementById('list-mail');
   const s=[...db.mails].sort((a,b)=>a.done-b.done);
@@ -738,7 +762,7 @@ function savePpl(){
 }
 function togglePpl(id){const x=db.people.find(p=>p.id===id);x.done=!x.done;save();}
 function togglePplSub(id,i){const p=db.people.find(x=>x.id===id);if(p&&p.subs&&p.subs[i]){p.subs[i].done=!p.subs[i].done;save();}}
-function delPpl(id){db.people=db.people.filter(p=>p.id!==id);save();}
+function delPpl(id){trashAdd(id);db.people=db.people.filter(p=>p.id!==id);save();}
 function renderPpl(){
   const el=document.getElementById('list-ppl');
   const s=[...db.people].sort((a,b)=>a.done-b.done);
@@ -782,7 +806,7 @@ function savePat(){
   editPatId=null;closeModal();save();
 }
 function togglePat(id){const x=db.patients.find(p=>p.id===id);x.done=!x.done;save();}
-function delPat(id){db.patients=db.patients.filter(p=>p.id!==id);save();}
+function delPat(id){trashAdd(id);db.patients=db.patients.filter(p=>p.id!==id);save();}
 const PRIOLBL={alta:'urgente',media:'normal',baixa:'pode esperar'};
 const ALAS=[['diarios','📝 Diários por escrever'],['remarcar','📞 Consultas por remarcar'],['discutir','💬 Doentes para discutir'],['outros','📋 Outros']];
 function renderPat(){
@@ -824,7 +848,7 @@ function saveCon(){
   editConId=null;closeModal();save();
 }
 function toggleCon(id){const x=db.congresses.find(c=>c.id===id);x.done=!x.done;save();}
-function delCon(id){db.congresses=db.congresses.filter(c=>c.id!==id);save();}
+function delCon(id){trashAdd(id);db.congresses=db.congresses.filter(c=>c.id!==id);save();}
 function renderCon(){
   const el=document.getElementById('list-con');
   const s=[...db.congresses].sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return((a.due||'9')<(b.due||'9')?-1:1);});
@@ -857,7 +881,7 @@ function saveCou(){
   editCouId=null;closeModal();save();
 }
 function toggleCou(id){const x=db.courses.find(c=>c.id===id);x.done=!x.done;save();}
-function delCou(id){db.courses=db.courses.filter(c=>c.id!==id);save();}
+function delCou(id){trashAdd(id);db.courses=db.courses.filter(c=>c.id!==id);save();}
 function renderCou(){
   const el=document.getElementById('list-cou');
   const s=[...db.courses].sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return((a.due||'9')<(b.due||'9')?-1:1);});
@@ -890,7 +914,7 @@ function saveEst(){
   editEstId=null;closeModal();save();
 }
 function toggleEst(id){const x=db.internships.find(c=>c.id===id);x.done=!x.done;save();}
-function delEst(id){db.internships=db.internships.filter(c=>c.id!==id);save();}
+function delEst(id){trashAdd(id);db.internships=db.internships.filter(c=>c.id!==id);save();}
 function renderEst(){
   const el=document.getElementById('list-est');
   const s=[...db.internships].sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;return((a.due||'9')<(b.due||'9')?-1:1);});
@@ -925,7 +949,7 @@ function saveExtra(){
   editExtraId=null;closeModal();save();
 }
 function toggleExtra(id){const x=db.extra.find(t=>t.id===id);x.done=!x.done;save();}
-function delExtra(id){db.extra=db.extra.filter(t=>t.id!==id);save();}
+function delExtra(id){trashAdd(id);db.extra=db.extra.filter(t=>t.id!==id);save();}
 function cycleExtra(id){const x=db.extra.find(t=>t.id===id);const o=['baixa','media','alta'];x.prio=o[(o.indexOf(x.prio)+1)%3];save();}
 function renderExtra(){
   const el=document.getElementById('list-ext');
@@ -998,7 +1022,7 @@ function moveJob(id,dir){
   const j=db.jobs.find(x=>x.id===id);const i=COLS.findIndex(c=>c.id===j.col)+dir;
   if(i>=0&&i<COLS.length){j.col=COLS[i].id;save();}
 }
-function delJob(id){db.jobs=db.jobs.filter(j=>j.id!==id);save();}
+function delJob(id){trashAdd(id);db.jobs=db.jobs.filter(j=>j.id!==id);save();}
 function renderKanban(){
   const el=document.getElementById('kanban');
   el.innerHTML=COLS.map(c=>{
@@ -1041,7 +1065,7 @@ function saveNote(){
   else db.notes.push({id:uid(),title,text});
   closeModal();save();
 }
-function delNote(id){db.notes=db.notes.filter(n=>n.id!==id);save();}
+function delNote(id){trashAdd(id);db.notes=db.notes.filter(n=>n.id!==id);save();}
 function renderNotes(){
   const el=document.getElementById('list-not');
   el.innerHTML=db.notes.length?db.notes.map(n=>`<div class="notecard" onclick="editNote('${n.id}')" title="Clica para editar">
@@ -1077,7 +1101,7 @@ function saveEvent(){
   else db.events.push({id:uid(),t,date:d,time,note});
   editEventId=null;closeModal();save();
 }
-function delEvent(id){db.events=db.events.filter(e=>e.id!==id);save();}
+function delEvent(id){trashAdd(id);db.events=db.events.filter(e=>e.id!==id);save();}
 const DAYCOLORS=['#ffedf5','#f6f0fe','#eef7ff','#effbf3','#fffbe9','#fff3ec'];
 /* Cores antigas (mais fortes) já guardadas → versão clara, só no ecrã */
 const DAYLIGHT={'#ffd6e8':'#ffedf5','#e9dcfd':'#f6f0fe','#d8ecff':'#eef7ff','#dcf6e3':'#effbf3','#fff3c9':'#fffbe9','#ffe3d2':'#fff3ec'};
@@ -1194,23 +1218,8 @@ function render(){
   document.getElementById('b-job').textContent=db.jobs.filter(j=>j.col!=='done').length;
   document.getElementById('b-not').textContent=db.notes.length;
 }
-/* ---------- Importação única dos itens novos (10 jun 2026, v2) ---------- */
-function mergeSeed(final){
-  try{
-    if(localStorage.getItem('agenda_seed_v2'))return;
-    const seed=readEmbedded();if(!seed)return;
-    let changed=false;
-    ['tasks','routines','events','mails','people','patients','congresses','courses','internships','extra','jobs','notes'].forEach(k=>{
-      (seed[k]||[]).forEach(it=>{
-        if(!db[k])db[k]=[];
-        if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
-      });
-    });
-    if(final)localStorage.setItem('agenda_seed_v2','1');
-    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
-  }catch(e){}
-}
-mergeSeed(!ghReady());
+/* (11 jun 2026) O antigo mergeSeed v2 genérico foi REMOVIDO — ressuscitava itens apagados
+   (tarefas, etc.) sempre que o localStorage era limpo. Não voltar a criar seeds genéricos. */
 /* ---------- Importação única v3 (10 jun 2026) — doentes da folha de consultas (ptc*) ---------- */
 function mergeSeedPtc(final){
   try{
@@ -1220,7 +1229,7 @@ function mergeSeedPtc(final){
     ['patients'].forEach(k=>{
       (seed[k]||[]).filter(it=>String(it.id).startsWith('ptc')).forEach(it=>{
         if(!db[k])db[k]=[];
-        if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
+        if(!db[k].some(x=>x.id===it.id)&&!(db.trash||[]).includes(it.id)){db[k].push(it);changed=true;}
       });
     });
     if(final)localStorage.setItem('agenda_seed_v3','1');
@@ -1252,7 +1261,7 @@ function seedFolha5(final){
     let changed=false;
     (seed.patients||[]).filter(it=>String(it.id).startsWith('ptd')).forEach(it=>{
       if(!db.patients)db.patients=[];
-      if(!db.patients.some(x=>x.id===it.id)){db.patients.push(it);changed=true;}
+      if(!db.patients.some(x=>x.id===it.id)&&!(db.trash||[]).includes(it.id)){db.patients.push(it);changed=true;}
     });
     if(final)localStorage.setItem('agenda_seed_v5','1');
     if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
@@ -1267,7 +1276,7 @@ function seedFolha4(final){
     let changed=false;
     const add=(k,pref)=>{(seed[k]||[]).filter(it=>String(it.id).startsWith(pref)).forEach(it=>{
       if(!db[k])db[k]=[];
-      if(!db[k].some(x=>x.id===it.id)){db[k].push(it);changed=true;}
+      if(!db[k].some(x=>x.id===it.id)&&!(db.trash||[]).includes(it.id)){db[k].push(it);changed=true;}
     });};
     add('patients','pte');add('people','pp03');add('notes','nt06');
     if(final)localStorage.setItem('agenda_seed_v6','1');
