@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Minha Agenda — v6</title>
+<title>A Minha Agenda — v8</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -176,7 +176,7 @@
   .mact{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
   .quickadd{display:flex;gap:10px;margin-bottom:16px}
   .quickadd input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:#fff}
-  @media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.kb{grid-template-columns:1fr 1fr}.side{width:96px;padding:10px 8px}.side .label,.brand span,.side .foot{display:none}.nav{justify-content:center;padding:8px 4px;gap:4px}.nav .ic{width:auto;font-size:27px}.nav .badge{font-size:10px;padding:1px 6px;min-width:16px;margin-left:0}.main{padding:16px 12px}.del{font-size:12px;padding:2px 4px}.cal{gap:3px}.day{min-height:52px;padding:3px;border-radius:7px;gap:2px}.day .dn{font-size:11px}.ev{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}}
+  @media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.kb{grid-template-columns:1fr 1fr}.side{width:96px;padding:10px 8px}.side .label,.brand span,.side .foot{display:none}.nav{justify-content:center;padding:8px 4px;gap:4px}.nav .ic{width:auto;font-size:27px}.nav .badge{font-size:10px;padding:1px 6px;min-width:16px;margin-left:0}.main{padding:16px 12px}.del{font-size:12px;padding:2px 4px}.cal{gap:3px}.day{min-height:calc(52px*var(--calz,1))}.day{padding:3px;border-radius:7px;gap:2px}.day .dn{font-size:calc(11px*var(--calz,1))}.ev{font-size:calc(9px*var(--calz,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#grid.zoomed .ev{white-space:normal;overflow:visible;text-overflow:clip}}
 </style>
 </head>
 <body>
@@ -339,7 +339,7 @@
   <div class="modal" id="modal"></div>
 </div>
 
-<script id="agenda-data" type="application/json">{"_savedAt":1781100000000,"tasks":[{"id":"tk01a","t":"Pedir dia de anos (Miu)","prio":"media","due":"","done":false},{"id":"tk02b","t":"Enviar documentos do estágio do Porto","prio":"alta","due":"","done":false},{"id":"tk03c","t":"Tirar certificado EUFOREA (e outros certificados)","prio":"media","due":"","done":false},{"id":"tk04d","t":"Questionário do Pedro","prio":"media","due":"","done":false},{"id":"tk05e","t":"Enviar trabalho para a prof.","prio":"media","due":"","done":false},{"id":"tk06f","t":"Ver consentimento","prio":"media","due":"","done":false},{"id":"tk07g","t":"Ir a consultas do Pedro","prio":"media","due":"","done":false},{"id":"tk08h","t":"Pré-medicação dos doentes a fazer IT","prio":"alta","due":"","done":false},{"id":"tk09i","t":"DECT — dar preferências de julho","prio":"alta","due":"","done":false},{"id":"tk10j","t":"Ver prémios SPAIC","prio":"baixa","due":"","done":false},{"id":"tk11k","t":"Ver agenda do HD (Hospital de Dia)","prio":"media","due":"","done":false},{"id":"tk12l","t":"Organizar dias de ausência","prio":"media","due":"","done":false},{"id":"tk13m","t":"Marcar férias 2026","prio":"media","due":"","done":false},{"id":"tk14n","t":"Bloquear outros dias (além de Peniche 24–27 set)","prio":"media","due":"","done":false}],"routines":[],"events":[{"id":"ev01a","t":"Reunião de Pneumologia","date":"2026-06-25","time":"","note":""},{"id":"ev02b","t":"Reunião de Pneumologia","date":"2026-06-26","time":"","note":""},{"id":"ev03c","t":"Peniche — bloquear","date":"2026-09-24","time":"","note":"Bloquear também outros dias"},{"id":"ev04d","t":"Peniche — bloquear","date":"2026-09-25","time":"","note":""},{"id":"ev05e","t":"Peniche — bloquear","date":"2026-09-26","time":"","note":""},{"id":"ev06f","t":"Peniche — bloquear","date":"2026-09-27","time":"","note":""},{"id":"ev07g","t":"Reunião LETI","date":"2026-10-02","time":"","note":""},{"id":"ev08h","t":"Reunião LETI","date":"2026-10-03","time":"","note":""},{"id":"ev09i","t":"Congresso BIRA","date":"2026-11-09","time":"","note":""},{"id":"ev10j","t":"Congresso BIRA","date":"2026-11-10","time":"","note":""},{"id":"ev11k","t":"Congresso BIRA","date":"2026-11-11","time":"","note":""}],"mails":[],"people":[{"id":"pp01a","name":"Carolina","subs":[{"t":"Avisar sobre a Iara","done":false}],"how":"Mensagem","done":false},{"id":"pp02b","name":"Clara (Probelt)","subs":[{"t":"Pedir — viagens também","done":false}],"how":"Mensagem","done":false},{"id":"pp03c","name":"Paula","subs":[{"t":"Autorizações TONI — confirmar se está tudo ok","done":false}],"how":"","done":false}],"patients":[{"id":"pt01a","name":"Lilia (proc. 8002833)","mot":"PPO amoxicilina","loc":"","prio":"media","due":"","done":false},{"id":"ptc01","name":"Mª Celeste Lourenço","mot":"13/01 — marcar consulta (7/10 13h30)","loc":"","prio":"media","due":"","done":false},{"id":"ptc02","name":"Liliana Isabel Filipe da Silva","mot":"09/02 — consentimento; triptase basal N; AINEs (?) alternativo — decidir","loc":"","prio":"media","due":"","done":false},{"id":"ptc03","name":"Gonçalo Pinto Magalhães","mot":"09/02 — P. metacolina neg.: s/ HRB; sintomas gástricos (?) — DRGE?","loc":"","prio":"media","due":"","done":false},{"id":"ptc04","name":"Inês Mota Ferreira","mot":"09/02 — pedir IgEs ácaros; descrever melhor sintomas; perguntar melhor sobre a História","loc":"","prio":"media","due":"","done":false},{"id":"ptc05","name":"Filipa Mariana Fernandes Martins","mot":"09/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc06","name":"Beatriz","mot":"10/02 — consentimentos; a dos venenos, faz Inderal — 9/09 8:30","loc":"","prio":"media","due":"","done":false},{"id":"ptc07","name":"Dulcínia (A)","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc08","name":"Mª de Lourdes","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc09","name":"João Afonso","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc10","name":"Beatriz","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc11","name":"Marlene","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc12","name":"Miguel Brusido","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc13","name":"Maria Bárbara","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc14","name":"Diogo","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc15","name":"Fernando","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc16","name":"Inês","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc17","name":"Licínia","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc18","name":"João Carvalho","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc19","name":"Maria Elisabete Pires (2)","mot":"25/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc20","name":"Miguel","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc21","name":"Inês Ferreira (2)","mot":"26/05 — falta ligar","loc":"","prio":"media","due":"","done":false},{"id":"ptc22","name":"Tiago Gomes","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptd01","name":"Cláudia Tavares (proc. 19025260)","mot":"Marcar consulta p/ outubro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd02","name":"Ana Salomé (proc. 9165363)","mot":"Marcar consulta para setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd03","name":"José Paulo Fonseca (proc. 9100213)","mot":"Agosto — marcar antes e depois da Prova","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd04","name":"Vanessa Vigário (proc. 19743078)","mot":"PC final de setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd05","name":"Vanessa Geral (proc. 9151790)","mot":"7/09 — telefónica e depois presencial","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd06","name":"Salvador Freire (proc. 22042029)","mot":"Marcar consulta para 2027","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte01","name":"Joana Ferreira (proc. 9333852)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte02","name":"Ana Luísa (proc. 14013872)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte03","name":"Afonso Violante","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte04","name":"Patrícia Marques (proc. 19001828)","mot":"Agendar consulta p/ janeiro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte05","name":"Estrela","mot":"Marcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"}],"congresses":[{"id":"cg01a","name":"Congresso BIRA","loc":"","due":"2026-11-09","note":"9 a 11 de novembro de 2026","done":false}],"courses":[{"id":"cu01a","name":"Cursos e-learning","loc":"online","due":"","note":"A escolher e fazer","done":false},{"id":"cu02b","name":"Curso fora","loc":"","due":"","note":"A definir — ver opções (Madrid? Santiago?)","done":false}],"internships":[{"id":"in01a","name":"Estágio no Porto","loc":"Porto","due":"","note":"Enviar documentos (ver Tarefas)","done":false},{"id":"in02b","name":"Ocupacional — Sastre","loc":"Madrid","due":"","note":"Opção de curso/estágio fora","done":false},{"id":"in03c","name":"Santiago","loc":"Santiago","due":"","note":"«stirtyst» — não percebi, confirmar","done":false}],"extra":[{"id":"ex01a","t":"Fazer IRS","prio":"alta","due":"2026-06-30","done":false},{"id":"ex02b","t":"Marcar consulta no dentista","prio":"media","due":"","done":false},{"id":"ex03c","t":"Cirurgião — mãe","prio":"alta","due":"","done":false}],"jobs":[],"notes":[{"id":"nt01a","title":"Revistas","text":"BMJ, JEAIC"},{"id":"nt02b","title":"Epiasma","text":"Epiasma — sem mais contexto, completa aqui"},{"id":"nt03c","title":"AECT score","text":"AECT score (Angioedema Control Test?)"},{"id":"nt04d","title":"OMZ","text":"TO antes do tx, T depois do tx"},{"id":"nt05e","title":"Physalis","text":"Ver physalis"},{"id":"nt06f","title":"Relatórios","text":"Relatório da Estrela: nada a acrescentar ao exame; sem relação ao relatório anterior, que se anexa.\nRelatório da Lília."}]}</script>
+<script id="agenda-data" type="application/json">{"_savedAt":1781100000000,"tasks":[{"id":"tk01a","t":"Pedir dia de anos (Miu)","prio":"media","due":"","done":false},{"id":"tk02b","t":"Enviar documentos do estágio do Porto","prio":"alta","due":"","done":false},{"id":"tk03c","t":"Tirar certificado EUFOREA (e outros certificados)","prio":"media","due":"","done":false},{"id":"tk04d","t":"Questionário do Pedro","prio":"media","due":"","done":false},{"id":"tk05e","t":"Enviar trabalho para a prof.","prio":"media","due":"","done":false},{"id":"tk06f","t":"Ver consentimento","prio":"media","due":"","done":false},{"id":"tk07g","t":"Ir a consultas do Pedro","prio":"media","due":"","done":false},{"id":"tk08h","t":"Pré-medicação dos doentes a fazer IT","prio":"alta","due":"","done":false},{"id":"tk09i","t":"DECT — dar preferências de julho","prio":"alta","due":"","done":false},{"id":"tk10j","t":"Ver prémios SPAIC","prio":"baixa","due":"","done":false},{"id":"tk11k","t":"Ver agenda do HD (Hospital de Dia)","prio":"media","due":"","done":false},{"id":"tk12l","t":"Organizar dias de ausência","prio":"media","due":"","done":false},{"id":"tk13m","t":"Marcar férias 2026","prio":"media","due":"","done":false},{"id":"tk14n","t":"Bloquear outros dias (além de Peniche 24–27 set)","prio":"media","due":"","done":false}],"routines":[],"events":[{"id":"ev01a","t":"Reunião de Pneumologia","date":"2026-06-25","time":"","note":""},{"id":"ev02b","t":"Reunião de Pneumologia","date":"2026-06-26","time":"","note":""},{"id":"ev03c","t":"Peniche — bloquear","date":"2026-09-24","time":"","note":"Bloquear também outros dias"},{"id":"ev04d","t":"Peniche — bloquear","date":"2026-09-25","time":"","note":""},{"id":"ev05e","t":"Peniche — bloquear","date":"2026-09-26","time":"","note":""},{"id":"ev06f","t":"Peniche — bloquear","date":"2026-09-27","time":"","note":""},{"id":"ev07g","t":"Reunião LETI","date":"2026-10-02","time":"","note":""},{"id":"ev08h","t":"Reunião LETI","date":"2026-10-03","time":"","note":""},{"id":"ev09i","t":"Congresso BIRA","date":"2026-11-09","time":"","note":""},{"id":"ev10j","t":"Congresso BIRA","date":"2026-11-10","time":"","note":""},{"id":"ev11k","t":"Congresso BIRA","date":"2026-11-11","time":"","note":""},{"id":"evhd01","t":"HD - tarde","date":"2026-07-01","time":"13:30","note":"13:30-17h. Com: Ricardo (interno). Especialistas: Francisca e Inês."},{"id":"evhd02","t":"HD - tarde","date":"2026-07-08","time":"13:30","note":"13:30-17h. Com: Ricardo (interno). Especialistas: Francisca e Inês."},{"id":"evhd03","t":"HD - manhã","date":"2026-07-03","time":"08:30","note":"8:30-13h. Com: Ricardo (interno). Especialistas: Beatriz e Tomás."},{"id":"evhd04","t":"HD - manhã","date":"2026-07-10","time":"08:30","note":"8:30-13h. Com: Ricardo (interno). Especialistas: Beatriz e Frederico."},{"id":"evhd05","t":"HD - manhã","date":"2026-07-17","time":"08:30","note":"8:30-13h. Com: Ricardo (interno). Especialistas: Beatriz e Frederico."},{"id":"imev01","t":"Consultas","date":"2026-07-02","time":"08:30","note":""},{"id":"imev02","t":"Consultas","date":"2026-07-02","time":"14:00","note":""},{"id":"imev03","t":"Consultas","date":"2026-07-06","time":"14:00","note":""},{"id":"imev04","t":"Consultas","date":"2026-07-07","time":"14:00","note":""},{"id":"imev05","t":"Consultas","date":"2026-07-13","time":"14:00","note":""},{"id":"imev06","t":"Consultas","date":"2026-07-14","time":"14:00","note":""},{"id":"imev07","t":"Consultas","date":"2026-07-16","time":"08:30","note":""},{"id":"imev08","t":"Consultas","date":"2026-07-16","time":"14:00","note":""},{"id":"imev09","t":"Consultas","date":"2026-07-20","time":"14:00","note":""},{"id":"imev10","t":"Consultas","date":"2026-07-21","time":"14:00","note":""},{"id":"imev11","t":"Consultas","date":"2026-07-23","time":"08:30","note":""},{"id":"imev12","t":"Consultas","date":"2026-07-23","time":"14:00","note":""},{"id":"imev13","t":"Consultas","date":"2026-07-27","time":"14:00","note":""},{"id":"imev14","t":"Consultas","date":"2026-07-28","time":"14:00","note":""},{"id":"imev15","t":"Consultas","date":"2026-07-30","time":"08:30","note":""},{"id":"imev16","t":"Consultas","date":"2026-07-30","time":"14:00","note":""},{"id":"imev17","t":"Consultas","date":"2026-08-03","time":"14:00","note":""},{"id":"imev18","t":"Consultas","date":"2026-08-04","time":"14:00","note":""},{"id":"imev19","t":"Consultas","date":"2026-08-06","time":"08:30","note":""},{"id":"imev20","t":"Consultas","date":"2026-08-06","time":"14:00","note":""},{"id":"imev21","t":"Consultas","date":"2026-08-10","time":"14:00","note":""},{"id":"imev22","t":"Consultas","date":"2026-08-11","time":"14:00","note":""},{"id":"imev23","t":"Consultas","date":"2026-08-13","time":"08:30","note":""},{"id":"imev24","t":"Consultas","date":"2026-08-13","time":"14:00","note":""},{"id":"imev25","t":"Consultas","date":"2026-08-31","time":"14:00","note":""}],"mails":[],"people":[{"id":"pp01a","name":"Carolina","subs":[{"t":"Avisar sobre a Iara","done":false}],"how":"Mensagem","done":false},{"id":"pp02b","name":"Clara (Probelt)","subs":[{"t":"Pedir — viagens também","done":false}],"how":"Mensagem","done":false},{"id":"pp03c","name":"Paula","subs":[{"t":"Autorizações TONI — confirmar se está tudo ok","done":false}],"how":"","done":false}],"patients":[{"id":"pt01a","name":"Lilia (proc. 8002833)","mot":"PPO amoxicilina","loc":"","prio":"media","due":"","done":false},{"id":"ptc01","name":"Mª Celeste Lourenço","mot":"13/01 — marcar consulta (7/10 13h30)","loc":"","prio":"media","due":"","done":false},{"id":"ptc02","name":"Liliana Isabel Filipe da Silva","mot":"09/02 — consentimento; triptase basal N; AINEs (?) alternativo — decidir","loc":"","prio":"media","due":"","done":false},{"id":"ptc03","name":"Gonçalo Pinto Magalhães","mot":"09/02 — P. metacolina neg.: s/ HRB; sintomas gástricos (?) — DRGE?","loc":"","prio":"media","due":"","done":false},{"id":"ptc04","name":"Inês Mota Ferreira","mot":"09/02 — pedir IgEs ácaros; descrever melhor sintomas; perguntar melhor sobre a História","loc":"","prio":"media","due":"","done":false},{"id":"ptc05","name":"Filipa Mariana Fernandes Martins","mot":"09/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc06","name":"Beatriz","mot":"10/02 — consentimentos; a dos venenos, faz Inderal — 9/09 8:30","loc":"","prio":"media","due":"","done":false},{"id":"ptc07","name":"Dulcínia (A)","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc08","name":"Mª de Lourdes","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc09","name":"João Afonso","mot":"10/02","loc":"","prio":"media","due":"","done":false},{"id":"ptc10","name":"Beatriz","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc11","name":"Marlene","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc12","name":"Miguel Brusido","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc13","name":"Maria Bárbara","mot":"16/03","loc":"","prio":"media","due":"","done":false},{"id":"ptc14","name":"Diogo","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc15","name":"Fernando","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc16","name":"Inês","mot":"13/04","loc":"","prio":"media","due":"","done":false},{"id":"ptc17","name":"Licínia","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc18","name":"João Carvalho","mot":"18/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc19","name":"Maria Elisabete Pires (2)","mot":"25/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc20","name":"Miguel","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptc21","name":"Inês Ferreira (2)","mot":"26/05 — falta ligar","loc":"","prio":"media","due":"","done":false},{"id":"ptc22","name":"Tiago Gomes","mot":"26/05","loc":"","prio":"media","due":"","done":false},{"id":"ptd01","name":"Cláudia Tavares (proc. 19025260)","mot":"Marcar consulta p/ outubro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd02","name":"Ana Salomé (proc. 9165363)","mot":"Marcar consulta para setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd03","name":"José Paulo Fonseca (proc. 9100213)","mot":"Agosto — marcar antes e depois da Prova","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd04","name":"Vanessa Vigário (proc. 19743078)","mot":"PC final de setembro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd05","name":"Vanessa Geral (proc. 9151790)","mot":"7/09 — telefónica e depois presencial","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"ptd06","name":"Salvador Freire (proc. 22042029)","mot":"Marcar consulta para 2027","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte01","name":"Joana Ferreira (proc. 9333852)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte02","name":"Ana Luísa (proc. 14013872)","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte03","name":"Afonso Violante","mot":"Remarcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte04","name":"Patrícia Marques (proc. 19001828)","mot":"Agendar consulta p/ janeiro","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"},{"id":"pte05","name":"Estrela","mot":"Marcar consulta","loc":"","prio":"media","due":"","done":false,"ala":"remarcar"}],"congresses":[{"id":"cg01a","name":"Congresso BIRA","loc":"","due":"2026-11-09","note":"9 a 11 de novembro de 2026","done":false}],"courses":[{"id":"cu01a","name":"Cursos e-learning","loc":"online","due":"","note":"A escolher e fazer","done":false},{"id":"cu02b","name":"Curso fora","loc":"","due":"","note":"A definir — ver opções (Madrid? Santiago?)","done":false}],"internships":[{"id":"in01a","name":"Estágio no Porto","loc":"Porto","due":"","note":"Enviar documentos (ver Tarefas)","done":false},{"id":"in02b","name":"Ocupacional — Sastre","loc":"Madrid","due":"","note":"Opção de curso/estágio fora","done":false},{"id":"in03c","name":"Santiago","loc":"Santiago","due":"","note":"«stirtyst» — não percebi, confirmar","done":false}],"extra":[{"id":"ex01a","t":"Fazer IRS","prio":"alta","due":"2026-06-30","done":false},{"id":"ex02b","t":"Marcar consulta no dentista","prio":"media","due":"","done":false},{"id":"ex03c","t":"Cirurgião — mãe","prio":"alta","due":"","done":false}],"jobs":[],"notes":[{"id":"nt01a","title":"Revistas","text":"BMJ, JEAIC"},{"id":"nt02b","title":"Epiasma","text":"Epiasma — sem mais contexto, completa aqui"},{"id":"nt03c","title":"AECT score","text":"AECT score (Angioedema Control Test?)"},{"id":"nt04d","title":"OMZ","text":"TO antes do tx, T depois do tx"},{"id":"nt05e","title":"Physalis","text":"Ver physalis"},{"id":"nt06f","title":"Relatórios","text":"Relatório da Estrela: nada a acrescentar ao exame; sem relação ao relatório anterior, que se anexa.\nRelatório da Lília."}]}</script>
 <script>
 /* ---------- Estado ---------- */
 const KEY='minha_agenda_v1';
@@ -479,6 +479,9 @@ async function ghPull(){
     if(typeof seedNotas902==='function')seedNotas902(true);
     if(typeof seedFolha5==='function')seedFolha5(true);
     if(typeof seedFolha4==='function')seedFolha4(true);
+    if(typeof seedHDJul==='function')seedHDJul(true);
+    if(typeof seedInbox==='function')seedInbox();
+    if(typeof fixConsTitles==='function')fixConsTitles(true);
     if(typeof migrAlas==='function')migrAlas(true);
     setGhStatus('GitHub ligado ✓ '+new Date().toLocaleTimeString('pt-PT'));
   }catch(e){setGhStatus('Erro: '+e.message);}
@@ -1121,12 +1124,27 @@ function holidaysPT(y){
   _hol[y]=H;return H;
 }
 function shiftMonth(n){view=new Date(view.getFullYear(),view.getMonth()+n,1);renderCal();}
-/* Deslizar com o dedo no calendário para mudar de mês (ecrã táctil) */
+/* Zoom do calendário (pinça com 2 dedos no telemóvel); nível guardado por dispositivo */
+let calZoom=parseFloat(localStorage.getItem('calZoom'))||1;
+function applyCalZoom(){const g=document.getElementById('grid');if(!g)return;g.style.setProperty('--calz',calZoom.toFixed(3));g.classList.toggle('zoomed',calZoom>1.3);}
+function setCalZoom(z){calZoom=Math.min(3,Math.max(1,z));try{localStorage.setItem('calZoom',calZoom);}catch(e){}applyCalZoom();renderCal();}
+/* Deslizar (1 dedo) muda de mês; pinça (2 dedos) faz zoom às células */
 (function(){
   const g=document.getElementById('grid');if(!g)return;
-  let x0=null,y0=null;
-  g.addEventListener('touchstart',e=>{if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}},{passive:true});
+  let x0=null,y0=null,d0=null,z0=1;
+  const dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+  g.addEventListener('touchstart',e=>{
+    if(e.touches.length>=2){x0=null;d0=dist(e.touches);z0=calZoom;}
+    else if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY;}
+  },{passive:true});
+  g.addEventListener('touchmove',e=>{
+    if(d0&&e.touches.length>=2){
+      calZoom=Math.min(3,Math.max(1,z0*dist(e.touches)/d0));
+      g.style.setProperty('--calz',calZoom.toFixed(3));g.classList.toggle('zoomed',calZoom>1.3);
+    }
+  },{passive:true});
   g.addEventListener('touchend',e=>{
+    if(d0!==null&&e.touches.length<2){d0=null;setCalZoom(calZoom);return;}
     if(x0===null)return;
     const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
     x0=y0=null;
@@ -1134,13 +1152,29 @@ function shiftMonth(n){view=new Date(view.getFullYear(),view.getMonth()+n,1);ren
   },{passive:true});
 })();
 function toToday(){view=new Date(today.getFullYear(),today.getMonth(),1);renderCal();}
+/* Cor do texto do evento por tipo: consultas (imev*) azul, HD (evhd*) verde; ou e.col explícito */
+function evColor(e){return e.col||(String(e.id).startsWith('imev')?'#2b6cb0':String(e.id).startsWith('evhd')?'#2f855a':'');}
+/* Vista do dia: lista tudo o que há nesse dia (marcações + prazos), cada item clicável, com botão para adicionar */
+function openDay(di){
+  const dd=new Date(di+'T00:00');
+  const titulo=dd.toLocaleDateString('pt-PT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const hol=holidaysPT(dd.getFullYear())[di]||'';
+  const evs=db.events.filter(e=>e.date===di).sort((a,b)=>(a.time||'')<(b.time||'')?-1:1);
+  const deads=dayDeadlines(di);
+  let rows='';
+  if(hol)rows+=`<div class="item"><div class="body"><div class="t">🎀 ${esc(hol)}</div><div class="meta">Feriado</div></div></div>`;
+  rows+=evs.map(e=>{const c=evColor(e);return `<div class="item"><div class="body" style="cursor:pointer" onclick="openEvent(null,'${e.id}')" title="Editar"><div class="t">${e.time?`<b style="color:${c||'var(--brand)'}">${e.time}</b> · `:''}<span${c?` style="color:${c}"`:''}>${esc(e.t)}</span></div>${e.note?`<div class="meta">${esc(e.note)}</div>`:''}</div></div>`;}).join('');
+  rows+=deads.map(p=>`<div class="item"><div class="body" style="cursor:pointer" onclick="closeModal();goView('${p.v}')" title="Ir à secção"><div class="t">${p.ic} ${esc(p.t)}</div></div></div>`).join('');
+  if(!rows)rows=`<div class="empty">Nada marcado neste dia. ✨</div>`;
+  showModal(`<h2 style="text-transform:capitalize">${titulo}</h2><div style="max-height:50vh;overflow:auto;margin:6px 0">${rows}</div><div class="mact"><button class="btn ghost" onclick="closeModal()">Fechar</button><button class="btn" onclick="openEvent('${di}')">+ Nova marcação</button></div>`);
+}
 function renderCal(){
   document.getElementById('mname').textContent=view.toLocaleDateString('pt-PT',{month:'long',year:'numeric'});
   const dows=['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
   document.getElementById('dows').innerHTML=dows.map(d=>`<div class="dow">${d}</div>`).join('');
   const first=new Date(view.getFullYear(),view.getMonth(),1);
   let start=(first.getDay()+6)%7; // segunda=0
-  const grid=document.getElementById('grid');let cells='';
+  const grid=document.getElementById('grid');let cells='';const cap=calZoom>1.7?9:calZoom>1.25?5:3;
   for(let i=0;i<42;i++){
     const d=new Date(view.getFullYear(),view.getMonth(),1-start+i);
     const di=iso(d);const out=d.getMonth()!==view.getMonth();
@@ -1150,16 +1184,16 @@ function renderCal(){
     const evs=db.events.filter(e=>e.date===di).sort((a,b)=>(a.time||'')<(b.time||'')?-1:1);
     const chips=[
       ...(hol?[`<div class="ev hol" title="Feriado: ${hol}">🎀 ${hol}</div>`]:[]),
-      ...evs.map(e=>`<div class="ev" title="${esc(e.t)} — clica para editar" onclick="event.stopPropagation();openEvent(null,'${e.id}')">${e.time?e.time+' ':''}${esc(e.t)}</div>`),
+      ...evs.map(e=>{const _c=evColor(e);return `<div class="ev"${_c?` style="color:${_c}"`:''} title="${esc(e.t)} — clica para editar" onclick="event.stopPropagation();openEvent(null,'${e.id}')">${e.time?e.time+' ':''}${esc(e.t)}</div>`;}),
       ...dayDeadlines(di).map(p=>`<div class="ev deadline" title="${esc(p.t)} — clica para ir à secção" onclick="event.stopPropagation();goView('${p.v}')">${p.ic} ${esc(p.t)}</div>`)
     ];
-    cells+=`<div class="day ${out?'out':''} ${di===todayISO?'today':''} ${(we||hol)?'pink':''}"${custom?` style="background:${custom}"`:''} onclick="openEvent('${di}')">
+    cells+=`<div class="day ${out?'out':''} ${di===todayISO?'today':''} ${(we||hol)?'pink':''}"${custom?` style="background:${custom}"`:''} onclick="openDay('${di}')">
       <div class="dn">${d.getDate()}</div>
-      ${chips.slice(0,3).join('')}
-      ${chips.length>3?`<div class="ev" style="background:none;color:var(--muted)">+${chips.length-3} mais</div>`:''}
+      ${chips.slice(0,cap).join('')}
+      ${chips.length>cap?`<div class="ev" style="background:none;color:var(--muted);cursor:pointer" title="Ver tudo deste dia">+${chips.length-cap} mais</div>`:''}
     </div>`;
   }
-  grid.innerHTML=cells;
+  grid.innerHTML=cells;applyCalZoom();
 }
 function dayDeadlines(di){
   const out=[];
@@ -1198,7 +1232,7 @@ function renderHoje(){
   // eventos de hoje
   const te=db.events.filter(e=>e.date===todayISO).sort((a,b)=>(a.time||'')<(b.time||'')?-1:1);
   document.getElementById('today-events').innerHTML=te.length?te.map(e=>`<div class="item">
-    <div class="body" style="cursor:pointer" onclick="openEvent(null,'${e.id}')" title="Clica para editar"><div class="t">${e.time?`<b style="color:var(--brand)">${e.time}</b> · `:''}${esc(e.t)}</div>
+    <div class="body" style="cursor:pointer" onclick="openEvent(null,'${e.id}')" title="Clica para editar"><div class="t">${e.time?`<b style="color:${evColor(e)||'var(--brand)'}">${e.time}</b> · `:''}<span${evColor(e)?` style="color:${evColor(e)}"`:''}>${esc(e.t)}</span></div>
     ${e.note?`<div class="meta">${esc(e.note)}</div>`:''}</div></div>`).join('')
     :`<div class="empty">Sem marcações hoje. 🗓️</div>`;
 }
@@ -1284,6 +1318,55 @@ function seedFolha4(final){
   }catch(e){}
 }
 seedFolha4(!ghReady());
+/* ---------- Importação única v7 (20 jun 2026) — Blocos HD de julho no calendário (evhd*) ---------- */
+function seedHDJul(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v9'))return;
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    if(!db.events)db.events=[];
+    (seed.events||[]).filter(it=>String(it.id).startsWith('evhd')).forEach(it=>{
+      if((db.trash||[]).includes(it.id))return;
+      const ex=db.events.find(x=>x.id===it.id);
+      if(!ex){db.events.push(it);changed=true;}
+      else if(ex.note!==it.note||ex.t!==it.t||ex.time!==it.time||ex.date!==it.date){ex.note=it.note;ex.t=it.t;ex.time=it.time;ex.date=it.date;changed=true;}
+    });
+    if(final)localStorage.setItem('agenda_seed_v9','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+seedHDJul(!ghReady());
+/* ---------- Importador permanente — itens injetados à mão (ids com prefixo reservado) ----------
+   Corre em cada carregamento: junta às listas os itens novos do JSON embebido cujo id começa por
+   'imev' (eventos) ou 'imtk' (tarefas), só se ainda não existirem e não estiverem na lixeira.
+   Sem flag e sem mudar a versão — para meter coisas novas basta deixá-las no JSON com um id novo.
+   Seguro: a lixeira (db.trash) impede ressuscitar apagados; itens já existentes nunca são tocados. */
+function seedInbox(){
+  try{
+    const seed=readEmbedded();if(!seed)return;
+    let changed=false;
+    const map={events:'imev',tasks:'imtk'};
+    Object.keys(map).forEach(k=>{
+      if(!db[k])db[k]=[];
+      (seed[k]||[]).filter(it=>String(it.id).startsWith(map[k])).forEach(it=>{
+        if(!db[k].some(x=>x.id===it.id)&&!(db.trash||[]).includes(it.id)){db[k].push(it);changed=true;}
+      });
+    });
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+seedInbox();
+/* ---------- Correção única v10 — tirar "manhã"/"tarde" do título das consultas já importadas ---------- */
+function fixConsTitles(final){
+  try{
+    if(localStorage.getItem('agenda_seed_v10'))return;
+    let changed=false;
+    (db.events||[]).forEach(e=>{if(String(e.id).startsWith('imev')&&/^Consultas - /.test(e.t||'')){e.t='Consultas';changed=true;}});
+    if(final)localStorage.setItem('agenda_seed_v10','1');
+    if(changed){db._savedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}markDirty();render();ghSchedulePush();}
+  }catch(e){}
+}
+fixConsTitles(!ghReady());
 /* Migração única: doentes existentes -> ala "diarios", exceto Lília -> "outros" */
 function migrAlas(final){
   try{
